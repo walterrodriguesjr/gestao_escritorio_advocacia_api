@@ -13,12 +13,26 @@ class AdminUserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
+        // Criação do usuário
+        $user = User::create([
             'name' => 'Admin',
-            'email' => 'admin@example.com',
-            'password' => Hash::make('password'), // Você pode mudar a senha conforme desejar
+            'email' => 'walterrjr.86@gmail.com',
+            'password' => Hash::make('pmprparana'),
             'email_verified_at' => now(),
         ]);
+
+        // Aqui estamos pulando a geração de token se o client não for encontrado
+        $client = \Laravel\Passport\Client::where('personal_access_client', true)->first();
+
+        if ($client) {
+            $token = $user->createToken('Admin Access Token')->accessToken;
+            $this->command->info('Admin access token: ' . $token);
+        } else {
+            $this->command->error('Personal access client not found. Token not generated.');
+        }
     }
 }
+
+
+
 

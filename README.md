@@ -50,3 +50,26 @@ php artisan migrate
 
 Acesse o projeto
 [http://localhost:8000](http://localhost:8000)
+
+
+CRIANDO USUARIO ADMINISTRADOR COM TOKEN
+Configuração do Passport
+Rode o comando para criar um cliente de acesso pessoal:
+
+```sh
+php artisan passport:client --personal
+```
+
+Acesse o Tinker:
+```sh
+php artisan tinker
+```
+Execute o comando dentro do Tinker:
+```sh
+$user = \App\Models\User::where('email', 'walterrjr.86@gmail.com')->first();
+$client = \Laravel\Passport\Client::where('password_client', false)->first();
+$token = $user->createToken('Admin Access Token', [], $client)->accessToken;
+echo $token;
+```
+
+
