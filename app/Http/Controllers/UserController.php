@@ -9,7 +9,7 @@ class UserController extends Controller
     public function index()
     {
         return response()->json([
-            'message' => 'Deu boa no UserController',
+            'message' => 'aeee no UserController',
             'status' => 200
         ]);
     }
