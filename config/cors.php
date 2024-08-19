@@ -10,7 +10,7 @@ return [
 
     'allowed_origins_patterns' => [],
 
-    'allowed_headers' => ['*'],
+    'allowed_headers' => ['Content-Type', 'X-Requested-With', 'Authorization', 'X-CSRF-TOKEN', 'Origin', 'Accept'],
 
     'exposed_headers' => [],
 
@@ -19,4 +19,6 @@ return [
     'supports_credentials' => true,
 
 ];
+
+
 
