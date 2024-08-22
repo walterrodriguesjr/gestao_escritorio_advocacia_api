@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -24,3 +25,8 @@ Route::post('/login', function (Request $request) {
 
     return response()->json(['error' => 'Unauthorized'], 401);
 });
+
+// routes/api.php
+
+Route::middleware('auth:api')->post('/logout', [AuthController::class, 'logout']);
+
